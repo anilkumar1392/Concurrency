@@ -27,7 +27,9 @@ class ViewController: UIViewController {
         // doSyncTaskInConcurrentQueue()
         
         // testDispatchGroup()
-        testWorkItem()
+        // testWorkItem()
+        
+        testbarrierFlags()
     }
 
     func testCustomThread() {
@@ -312,5 +314,12 @@ extension ViewController {
         let obj = DWItem()
         obj.addItem()
         obj.addMoreItem()
+    }
+    
+    func testbarrierFlags() {
+        let flags = DFlags()
+        flags.shop()
+        // flags.shop()
+
     }
 }

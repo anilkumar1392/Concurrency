@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		F5691F21292F4882004199AA /* DispatchGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5691F20292F4882004199AA /* DispatchGroup.swift */; };
 		F5691F23292F4F1E004199AA /* DispatchWorkItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5691F22292F4F1E004199AA /* DispatchWorkItems.swift */; };
+		F5691F25292F5251004199AA /* DispatchFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5691F24292F5251004199AA /* DispatchFlags.swift */; };
+		F5691F27292F62FF004199AA /* DispatchSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5691F26292F62FF004199AA /* DispatchSources.swift */; };
 		F5F571B2292E0B7400B4A9CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F571B1292E0B7400B4A9CC /* AppDelegate.swift */; };
 		F5F571B4292E0B7400B4A9CC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F571B3292E0B7400B4A9CC /* SceneDelegate.swift */; };
 		F5F571B6292E0B7400B4A9CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5F571B5292E0B7400B4A9CC /* ViewController.swift */; };
@@ -22,6 +24,8 @@
 /* Begin PBXFileReference section */
 		F5691F20292F4882004199AA /* DispatchGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchGroup.swift; sourceTree = "<group>"; };
 		F5691F22292F4F1E004199AA /* DispatchWorkItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchWorkItems.swift; sourceTree = "<group>"; };
+		F5691F24292F5251004199AA /* DispatchFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchFlags.swift; sourceTree = "<group>"; };
+		F5691F26292F62FF004199AA /* DispatchSources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchSources.swift; sourceTree = "<group>"; };
 		F5F571AE292E0B7400B4A9CC /* Concurrency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Concurrency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F571B1292E0B7400B4A9CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5F571B3292E0B7400B4A9CC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +87,8 @@
 				F5F571C8292E0E5F00B4A9CC /* GCD.swift */,
 				F5691F20292F4882004199AA /* DispatchGroup.swift */,
 				F5691F22292F4F1E004199AA /* DispatchWorkItems.swift */,
+				F5691F24292F5251004199AA /* DispatchFlags.swift */,
+				F5691F26292F62FF004199AA /* DispatchSources.swift */,
 			);
 			path = Threads;
 			sourceTree = "<group>";
@@ -160,7 +166,9 @@
 			files = (
 				F5691F23292F4F1E004199AA /* DispatchWorkItems.swift in Sources */,
 				F5F571C9292E0E5F00B4A9CC /* GCD.swift in Sources */,
+				F5691F27292F62FF004199AA /* DispatchSources.swift in Sources */,
 				F5F571C7292E0BBC00B4A9CC /* CustomThread.swift in Sources */,
+				F5691F25292F5251004199AA /* DispatchFlags.swift in Sources */,
 				F5F571B6292E0B7400B4A9CC /* ViewController.swift in Sources */,
 				F5F571B2292E0B7400B4A9CC /* AppDelegate.swift in Sources */,
 				F5F571B4292E0B7400B4A9CC /* SceneDelegate.swift in Sources */,
