@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        // testCustomThread()
+        testCustomThread()
         
         // serial1()
         // customQueues()
@@ -29,7 +29,13 @@ class ViewController: UIViewController {
         // testDispatchGroup()
         // testWorkItem()
         
-        testbarrierFlags()
+        // testbarrierFlags()
+        // testOperations()
+        // testCustomOperations()
+        // testOperationQueue()
+        
+        // testDependencyWithAsync()
+        // testInterviewQuestions()
     }
 
     func testCustomThread() {
@@ -37,8 +43,16 @@ class ViewController: UIViewController {
 //        thread.createTread()
         
         let serial = GCD()
-        // serial.serial()
-        serial.concurrent()
+         // serial.serial()
+         // serial.serial1()
+         // serial.serial2()
+         // serial.serial3()
+        // serial.serial4()
+        // serial.serial5()
+        // serial.serial6()
+        // serial.serial7()
+        // serial.concurrent1()
+        serial.concurrent2()
 
     }
     
@@ -321,5 +335,36 @@ extension ViewController {
         flags.shop()
         // flags.shop()
 
+    }
+    
+    func testOperations() {
+        let operations = Operations()
+        // operations.testOperations()
+        operations.testMultipleBlocks()
+        print("operation finished")
+
+    }
+    
+    func testCustomOperations() {
+        let opertaion: CustomOperation = CustomOperation()
+        opertaion.start()
+        print("Custome operation executed")
+    }
+    
+    func testOperationQueue() {
+        // this proves operation queue workk on some other thread not on main thread.
+        let operation = Operations()
+        operation.testOperationQueue()
+        print("Custom operation executed")
+    }
+    
+    func testDependencyWithAsync() {
+        let operation = Operations()
+        operation.dependencyWithAsync()
+    }
+    
+    func testInterviewQuestions() {
+        let test = Predict()
+        test.execute()
     }
 }

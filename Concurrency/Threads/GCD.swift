@@ -14,7 +14,7 @@ import Foundation
  
  we can submit the tasks.
  Those tasks are submitted in a queue.
- and then GCD is an api that takes carre of that queue.
+ and then GCD is an api that takes care of that queue.
  and our submitted tasks are taken care in FIFO manner.
  
  Now execution is done in a workers pool.
@@ -49,29 +49,206 @@ import Foundation
  */
 
 class GCD {
+    
+    // async will not block current execition and 11 ... 200 will get printed first then task submitted to main to 300 ... 400 will be exectuted and then 401...500
     func serial() {
         var counter = 1
         
         DispatchQueue.main.async {
-            for i in 0...3 {
+            for i in 300...400 {
                 counter = i
                 print("\(counter)")
             }
         }
         
-        for i in 4...6 {
+        for i in 11...200 {
             counter = i
             print("\(counter)")
         }
         
         DispatchQueue.main.async {
-            counter = 9
-            print("\(counter)")
+//            counter = 9
+//            print("\(counter)")
+
+            for i in 401...500 {
+                counter = i
+                print("\(counter)")
+            }
         }
     }
     
-    func concurrent() {
-        // Concurrent and Async can not predict the behaviour
+    // In serial queue task submitted to queue will be executed serially. (next task will executred once first finishes)
+    var serialQueue: DispatchQueue = DispatchQueue(label: "com.queue.serial")
+    func serial1() {
+        var counter = 1
+        
+        serialQueue.async {
+            for i in 300...400 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+
+        serialQueue.async {
+            for i in 411...500 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+        
+        serialQueue.async {
+            for i in 600...700 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+    }
+    
+    // Task submitted to serial queue will executed with out stoping the current execution so
+    // 300...400 and 11...200 will run concurrently while
+    // next async will will be picked while first finishes.
+    
+    func serial2() {
+        var counter = 1
+        
+        serialQueue.async {
+            for i in 300...400 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+        
+        for i in 11...200 {
+            counter = i
+            print("\(counter)")
+        }
+        
+        serialQueue.async {
+            for i in 411...500 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+    }
+
+    // Sync waits for any other task to finish running on any other thread.
+    func serial3() {
+        var counter = 1
+        
+        serialQueue.sync {
+            for i in 30...40 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+        
+        for i in 50...20000 {
+            counter = i
+            print("\(counter)")
+        }
+
+        serialQueue.sync {
+            for i in 3001...3050 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+        
+        // If we use main here that will block the current exection as main thread has highest priority app will crash.
+        
+//        DispatchQueue.main.sync {
+//            for i in 3001...3050 {
+//                counter = i
+//                print("\(counter)")
+//            }
+//        }
+        
+        DispatchQueue.main.async {
+            for i in 3001...3050 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+    }
+    
+    // 30 ...40 will print first then 50 ... 60
+    func serial4() {
+        var counter = 1
+
+        serialQueue.sync {
+            for i in 30...40 {
+                counter = i
+                print("\(counter)")
+            }
+            
+            serialQueue.async {
+                for i in 50...60 {
+                    counter = i
+                    print("\(counter)")
+                }
+            }
+        }
+    }
+    
+    // app will crash as inner sync will stop current exectution and start it's task so app will crash
+    func serial5() {
+        var counter = 1
+
+        serialQueue.sync {
+            for i in 30...40 {
+                counter = i
+                print("\(counter)")
+            }
+            
+            serialQueue.sync {
+                for i in 50...60 {
+                    counter = i
+                    print("\(counter)")
+                }
+            }
+        }
+    }
+    
+    // App will crash as sync will stop current execution
+    func serial6() {
+        var counter = 1
+
+        serialQueue.async {
+            for i in 30...40 {
+                counter = i
+                print("\(counter)")
+            }
+            
+            self.serialQueue.sync {
+                for i in 50...60 {
+                    counter = i
+                    print("\(counter)")
+                }
+            }
+        }
+    }
+    
+    // 30...40 first submitted task then 50...60  another submitted task
+    func serial7() {
+        var counter = 1
+
+        serialQueue.async {
+            for i in 30...40 {
+                counter = i
+                print("\(counter)")
+            }
+            
+            self.serialQueue.async {
+                for i in 50...60 {
+                    counter = i
+                    print("\(counter)")
+                }
+            }
+        }
+    }
+    
+    // Concurrent and Async can not predict the behaviour
+    func concurrent1() {
         var counter = 1
         
         DispatchQueue.global().async {
@@ -82,6 +259,29 @@ class GCD {
         }
         
         for _ in 4...60 {
+            print("No queue assigned")
+        }
+        
+        DispatchQueue.global().async {
+            for i in 7...12 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+    }
+    
+    // firts 8...300 then 4...600  then 7...12
+    func concurrent2() {
+        var counter = 1
+        
+        DispatchQueue.global().async {
+            for i in 8...300 {
+                counter = i
+                print("\(counter)")
+            }
+        }
+        
+        for _ in 4...600 {
             print("No queue assigned")
         }
         
